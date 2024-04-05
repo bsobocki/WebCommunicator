@@ -1,13 +1,12 @@
-import { andrzejekMessages } from "../../../data/andrzejekMessagesData";
 import { ChatMessagesField } from "./Messages/MessagesField";
 import { ChatTitle } from "./Title";
-import { MessageData } from "./Messages/Message";
+import { MessageInfoData } from "./Messages/Message";
 import MessageInput from "./InputBar/MessageInput";
 import { useState } from "react";
 
 export interface ChatProps {
   title: string;
-  messages: MessageData[];
+  messages: MessageInfoData[];
 }
 
 const chatStyle: React.CSSProperties = {
@@ -18,17 +17,17 @@ const chatStyle: React.CSSProperties = {
     gap: '10px'
 }
 
-export const Chat: React.FC<ChatProps> = ({ title }) => {
-  const [messages, setMessages] = useState<MessageData[]>(andrzejekMessages);
+export const Chat: React.FC<ChatProps> = ({ title, messages }) => {
+  const [messagesData, setMessages] = useState<MessageInfoData[]>(messages);
 
-  const addMessage = (newMessage: MessageData) => {
-    setMessages((prevMessages: MessageData[]) => [...prevMessages, newMessage]);
+  const addMessage = (newMessage: MessageInfoData) => {
+    setMessages((prevMessages: MessageInfoData[]) => [...prevMessages, newMessage]);
   };
 
   return (
     <div style={chatStyle}>
       <ChatTitle title={title} />
-      <ChatMessagesField messages={messages}/>
+      <ChatMessagesField messages={messagesData}/>
       <MessageInput onSendMessage={addMessage}/>
     </div>
   );

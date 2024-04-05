@@ -1,8 +1,13 @@
+import { ChatData } from '../../../interface/data';
 import { MsgList } from './Messages/MessageList';
 import { Navigation } from './Navigation/Navigation';
 import { SIDEBAR_WIDTH } from './constants';
 
-export const Sidebar: React.FC = () => {
+export interface SidebarProps {
+  chatsInfo: ChatData[]
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ chatsInfo }) => {
   return (
     <nav
       style={{
@@ -14,7 +19,7 @@ export const Sidebar: React.FC = () => {
       }}
     >
       <Navigation />
-      <MsgList />
+      <MsgList chats={chatsInfo}/>
     </nav>
   );
 };

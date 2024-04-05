@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { ChatData } from '../../../../data/itemListData';
 import styles from './messageItemStyles.module.css'
+import { ChatData } from '../../../../interface/data';
 
-export const MsgItem: React.FC<ChatData> = ({ title, lastMessage }) => {
+export const MsgItem: React.FC<ChatData> = ({ title, messages }) => {
   const [isHovered, setIsHovered] = useState(false);
+  let message = messages[messages.length-1].content;
+  message = message === '' ? 'No messages' : message;
 
   return (
     <div
@@ -13,7 +15,7 @@ export const MsgItem: React.FC<ChatData> = ({ title, lastMessage }) => {
     >
       <div className={styles.item}>
         <h4 style={isHovered ? { color: 'black' } : { color: 'white' }}>{title}</h4>
-        {lastMessage}
+        {message}
       </div>
     </div>
   );

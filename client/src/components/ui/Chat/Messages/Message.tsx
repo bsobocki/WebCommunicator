@@ -1,4 +1,4 @@
-export interface MessageData {
+export interface MessageInfoData {
     date: number;
     sender: 'user' | 'interlocutor';
     content: string;
@@ -44,7 +44,7 @@ export const InterlocutorChatMessageProps: React.CSSProperties = {
     color: 'white'
 }
   
-export const ChatMessage: React.FC<MessageData> = (messageData) => {
+export const ChatMessage: React.FC<MessageInfoData> = (messageData) => {
     return <div style={messageData.sender === 'user' ? UserChatMessageRowStyle : InterlocutorChatMessageRowStyle}>
         <div style={messageData.sender === 'user' ? UserChatMessageStyle : InterlocutorChatMessageProps}>
             <h4 className="budda">{messageData.sender}</h4>

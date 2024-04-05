@@ -1,4 +1,4 @@
-import { ChatMessage, MessageData } from './Message';
+import { ChatMessage, MessageInfoData } from './Message';
 import { useEffect, useRef } from 'react';
 
 const ChatMessagesFieldStyle: React.CSSProperties = {
@@ -12,7 +12,7 @@ const ChatMessagesFieldStyle: React.CSSProperties = {
 };
 
 export interface ChatMessagesFieldProperties {
-  messages: MessageData[];
+  messages: MessageInfoData[];
 }
 
 export const ChatMessagesField: React.FC<ChatMessagesFieldProperties> = ({ messages }) => {

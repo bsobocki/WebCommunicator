@@ -1,9 +1,9 @@
-export interface ChatData {
+export interface ChatItemData {
     title: string,
     lastMessage: string
 }
 
-export const chats: ChatData[] = [
+export const chats: ChatItemData[] = [
     {title: "freindly cunts", lastMessage: "Ty siusiaku"},
     {title: "Damian Matkowski", lastMessage: "Noo :D"},
     {title: "Friends Trio", lastMessage: "XD"},

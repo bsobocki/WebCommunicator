@@ -1,11 +1,11 @@
 import { FormEvent, useState } from 'react';
-import { MessageData } from '../Messages/Message';
+import { MessageInfoData } from '../Messages/Message';
 import styles from './inputStyles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 export interface MessageInputProps {
-  onSendMessage: (message: MessageData) => void;
+  onSendMessage: (message: MessageInfoData) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
@@ -20,7 +20,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
 
     if (!message.trim()) return;
 
-    const newMessage: MessageData = {
+    const newMessage: MessageInfoData = {
       content: message,
       date: Date.now(),
       sender: 'user',
