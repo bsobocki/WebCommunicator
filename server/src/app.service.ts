@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { LocalStorageRepository } from './database/LocalStorageRepository';
 
 @Injectable()
 export class AppService {
+  constructor() {}
+
   getHello(): string {
-    return 'Hello World!';
+    return 'This server is running! :)';
   }
 }
