@@ -1,7 +1,7 @@
 import { APPBAR_HEIGHT } from './constants';
 import logo from '../../../assets/logo.png'
 import { FormEvent, useState } from 'react';
-import { WebSocketConnection } from '../../api/message';
+import { WebSocketConnection } from '../../api/WebSocket/WebSocketConnection';
 import styles from './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +28,8 @@ export const AppBar: React.FC = () => {
     e.preventDefault();
 
     if (!userName.trim()) return;
-    sender.setConnection(userName);
+    console.log("trying to set user: ", userName);
+    sender.resetConnection(userName);
   };
 
   return <nav style={AppBarStyle}>

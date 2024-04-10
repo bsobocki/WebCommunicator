@@ -2,7 +2,8 @@ import { ChatMessagesField } from "./Messages/MessagesField";
 import { ChatTitle } from "./Title";
 import { MessageInfoData } from "./Messages/Message";
 import MessageInput from "./InputBar/MessageInput";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { WebSocketContext } from "../../api/WebSocket/WebSocketProvider";
 
 export interface ChatProps {
   title: string;
@@ -19,8 +20,27 @@ const chatStyle: React.CSSProperties = {
 
 export const Chat: React.FC<ChatProps> = ({ title, messages }) => {
   const [messagesData, setMessages] = useState<MessageInfoData[]>(messages);
+  const webSocketCtx = useContext(WebSocketContext)!;
+  const webSocket = webSocketCtx?.webSocket;
+  const setWebSocket = webSocketCtx?.setWebSocket;
+
+  if (!webSocket) {
+    console.log("i dont have this webSocket!!!");
+  } else {
+    console.log("web socket is on!!");
+  }
+
+  setWebSocket((webSocket: any) => {
+    webSocket?.addReceiveMessageCallback((newMessage: any) => {
+      const msg: MessageInfoData =   {date:0, sender: 'interlocutor', content: newMessage.content};
+      console.log('Trying to add: ', msg);
+      setMessages((prevMessages: MessageInfoData[]) => [...prevMessages, msg]);
+    });
+  });
+ 
 
   const addMessage = (newMessage: MessageInfoData) => {
+    webSocket?.sendMessage('papi', newMessage.content);
     setMessages((prevMessages: MessageInfoData[]) => [...prevMessages, newMessage]);
   };
 

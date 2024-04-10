@@ -1,8 +1,9 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { MessageInfoData } from '../Messages/Message';
 import styles from './inputStyles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { WebSocketContext } from '../../../api/WebSocket/WebSocketProvider';
 
 export interface MessageInputProps {
   onSendMessage: (message: MessageInfoData) => void;
